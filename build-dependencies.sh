@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 export BINUTILS_VERSION=2.44
 export GCC_VERSION=14.2.0
