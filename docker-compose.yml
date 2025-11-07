@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  osdev:
+    build: .
+    image: os-dev-ubuntu-22-04
+    container_name: os-dev
+    tty: true
+    stdin_open: true
+    user: dev
+    working_dir: /workspace/os-dev
+
+    volumes:
+      - ./dependencies:/workspace/dependencies
+      - ./src:/workspace/os-dev
