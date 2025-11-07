@@ -6,6 +6,4 @@ if [ ! "$?" -eq 0 ]; then
     exit 1
 fi
 
-echo -e "\033[1;32mWelcome\033[0m"
-
 exec /bin/bash
