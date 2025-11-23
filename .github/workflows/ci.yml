@@ -17,9 +17,22 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
       
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      with:
+        path: dependencies
+        key: ${{ runner.os }}-dependencies-${{ hashFiles('build-dependencies.sh') }}
+        restore-keys: |
+          ${{ runner.os }}-dependencies-
+      
     - name: Build Docker image
-      run: |
-        docker build -t os-dev:latest .
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        tags: os-dev:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        load: true
       
     - name: Run commands in Docker container
       run: |
@@ -29,8 +42,8 @@ jobs:
           -w /workspace/os-dev \
           os-dev:latest \
           bash -c "
-            # Build dependencies if needed
-            # /opt/build-dependencies.sh || true
+            # Build dependencies if needed (will skip if already built)
+            /opt/build-dependencies.sh
             
             # Add your build/test commands here
             # For example:
