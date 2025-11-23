@@ -38,18 +38,14 @@ jobs:
       run: |
         docker run --rm \
           -v ${{ github.workspace }}/dependencies:/workspace/dependencies \
-          -v ${{ github.workspace }}/src:/workspace/os-dev/src \
-          -w /workspace/os-dev \
+          -v ${{ github.workspace }}/kernel:/workspace/kernel \
+          -w /workspace/kernel \
           os-dev:latest \
           bash -c "
             # Build dependencies if needed (will skip if already built)
             /opt/build-dependencies.sh
             
-            # Add your build/test commands here
-            # For example:
-            # make build
-            # make test
-            # or any other commands you want to run
+            make all
             
             echo 'CI commands completed successfully'
           "
