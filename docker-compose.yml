@@ -8,8 +8,8 @@ services:
     tty: true
     stdin_open: true
     user: dev
-    working_dir: /workspace/os-dev
+    working_dir: /workspace/kernel
 
     volumes:
       - ./dependencies:/workspace/dependencies
-      - ./src:/workspace/os-dev
+      - ./kernel:/workspace/kernel

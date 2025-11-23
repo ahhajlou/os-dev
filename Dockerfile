@@ -8,7 +8,7 @@ ENV TARGET=i686-elf
 ENV WORKSPACE_DIR=/workspace
 ENV PREFIX="$WORKSPACE_DIR/dependencies/cross"
 ENV SRC_DIR="$WORKSPACE_DIR/dependencies/src"
-ENV OS_DIR="$WORKSPACE_DIR/os-dev"
+ENV OS_DIR="$WORKSPACE_DIR/kernel"
 ENV PATH="$PREFIX/bin:$PATH"
 
 # Create non-root user with passwordless sudo
