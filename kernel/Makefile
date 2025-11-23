@@ -25,7 +25,7 @@ OBJS = $(BOOT_OBJ) $(KERNEL_OBJ)
 
 # Default target
 .PHONY: all clean grub
-all: $(OS_BIN)
+all: $(OS_BIN) grub
 
 # Linking rule
 $(OS_BIN): check_build_dir $(OBJS) $(LINKER_SCRIPT)
