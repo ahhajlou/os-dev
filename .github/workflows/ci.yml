@@ -43,3 +43,12 @@ jobs:
           os-dev:latest \
           make all
 
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: os-build-artifacts
+        path: |
+          kernel/build/myos.bin
+          kernel/build/myos.iso
+        retention-days: 30          
+
