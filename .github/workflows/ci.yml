@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Build Docker image
+      run: |
+        docker build -t os-dev:latest .
+      
+    - name: Run commands in Docker container
+      run: |
+        docker run --rm \
+          -v ${{ github.workspace }}/dependencies:/workspace/dependencies \
+          -v ${{ github.workspace }}/src:/workspace/os-dev/src \
+          -w /workspace/os-dev \
+          os-dev:latest \
+          bash -c "
+            # Build dependencies if needed
+            # /opt/build-dependencies.sh || true
+            
+            # Add your build/test commands here
+            # For example:
+            # make build
+            # make test
+            # or any other commands you want to run
+            
+            echo 'CI commands completed successfully'
+          "
+
