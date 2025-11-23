@@ -40,13 +40,6 @@ jobs:
           -v ${{ github.workspace }}/dependencies:/workspace/dependencies \
           -v ${{ github.workspace }}/kernel:/workspace/kernel \
           -w /workspace/kernel \
-          os-dev:latest \
-          bash -c "
-            # Build dependencies if needed (will skip if already built)
-            /opt/build-dependencies.sh
-            
-            make all
-            
-            echo 'CI commands completed successfully'
-          "
+          os-dev:latest \            
+          make all
 

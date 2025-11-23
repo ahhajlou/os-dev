@@ -6,4 +6,10 @@ if [ ! "$?" -eq 0 ]; then
     exit 1
 fi
 
-exec /bin/bash
+
+# If arguments were passed, execute them instead of the default bash shell
+if [ "$#" -gt 0 ]; then
+    exec "$@"
+else
+    exec /bin/bash
+fi
