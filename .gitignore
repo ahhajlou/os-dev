@@ -1,2 +1,6 @@
 dependencies/*
 !dependencies/.gitkeep
+
+kernel/build/
+kernel/isodir/
+kernel/myos.iso
